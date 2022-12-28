@@ -2,6 +2,8 @@ import express from "express";
 
 const app = express();
 
+app.use(express.json());
+
 const books = [
   { id: 1, title: "Matrix" },
   { id: 2, title: "Matrix Reload" },
@@ -14,6 +16,11 @@ app.get("/", (req, res) => {
 
 app.get("/books", (req, res) => {
   res.status(200).json(books);
+});
+
+app.post("/books", (req, res) => {
+  books.push(req.body);
+  res.status(201).send("Success adding new book");
 });
 
 export default app;
