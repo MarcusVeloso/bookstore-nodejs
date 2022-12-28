@@ -23,4 +23,14 @@ app.post("/books", (req, res) => {
   res.status(201).send("Success adding new book");
 });
 
+app.put("/books/:id", (req, res) => {
+  let index = searchBook(req.params.id);
+  books[index].title = req.body.title;
+  res.json(books);
+});
+
+function searchBook(id) {
+  return books.findIndex((book) => book.id == id);
+}
+
 export default app;
