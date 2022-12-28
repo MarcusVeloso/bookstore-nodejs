@@ -19,7 +19,8 @@ app.get("/books", (req, res) => {
 });
 
 app.get("/books/:id", (req, res) => {
-  let index = searchBook(req.params.id);
+  let { id } = req.params;
+  let index = searchBook(id);
   res.json(books[index]);
 });
 
@@ -29,9 +30,17 @@ app.post("/books", (req, res) => {
 });
 
 app.put("/books/:id", (req, res) => {
-  let index = searchBook(req.params.id);
+  let { id } = req.params;
+  let index = searchBook(id);
   books[index].title = req.body.title;
   res.json(books);
+});
+
+app.delete("/books/:id", (req, res) => {
+  let { id } = req.params;
+  let index = searchBook(id);
+  books.splice(index, 1);
+  res.json(`Book ${id} removed!`);
 });
 
 function searchBook(id) {
