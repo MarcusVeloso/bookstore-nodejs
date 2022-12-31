@@ -14,7 +14,7 @@ class BookController {
         res.status(400).send({ message: `${err.message} - Book not found.` });
         return;
       }
-      console.log(id);
+
       res.status(200).send(books);
     });
   };
