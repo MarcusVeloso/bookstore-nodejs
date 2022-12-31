@@ -7,6 +7,18 @@ class BookController {
     });
   };
 
+  static listBookById = (req, res) => {
+    const { id } = req.params;
+    books.findById(id, (err, books) => {
+      if (err) {
+        res.status(400).send({ message: `${err.message} - Book not found.` });
+        return;
+      }
+      console.log(id);
+      res.status(200).send(books);
+    });
+  };
+
   static addBook = (req, res) => {
     let book = new books(req.body);
     book.save((err) => {
