@@ -20,13 +20,6 @@ app.get("/books/:id", (req, res) => {
   res.json(books[index]);
 });
 
-app.put("/books/:id", (req, res) => {
-  let { id } = req.params;
-  let index = searchBook(id);
-  books[index].title = req.body.title;
-  res.json(books);
-});
-
 app.delete("/books/:id", (req, res) => {
   let { id } = req.params;
   let index = searchBook(id);
