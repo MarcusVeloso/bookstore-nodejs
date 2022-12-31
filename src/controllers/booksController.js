@@ -12,14 +12,17 @@ class BookController {
 
   static listBookById = (req, res) => {
     const { id } = req.params;
-    books.findById(id, (err, books) => {
-      if (err) {
-        res.status(400).send({ message: `${err.message} - Book not found.` });
-        return;
-      }
+    books
+      .findById(id)
+      .populate("author", "name")
+      .exec((err, books) => {
+        if (err) {
+          res.status(400).send({ message: `${err.message} - Book not found.` });
+          return;
+        }
 
-      res.status(200).send(books);
-    });
+        res.status(200).send(books);
+      });
   };
 
   static addBook = (req, res) => {
