@@ -1,4 +1,5 @@
 import express from "express";
+import authors from "./authorsRoutes.js";
 import books from "./booksRoutes.js";
 
 const routes = (app) => {
@@ -6,7 +7,7 @@ const routes = (app) => {
     res.status(200).send({ title: "Bookstore" });
   });
 
-  app.use(express.json(), books);
+  app.use(express.json(), books, authors);
 };
 
 export default routes;
