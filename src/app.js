@@ -20,11 +20,6 @@ app.get("/books/:id", (req, res) => {
   res.json(books[index]);
 });
 
-app.post("/books", (req, res) => {
-  books.push(req.body);
-  res.status(201).send("Success adding new book");
-});
-
 app.put("/books/:id", (req, res) => {
   let { id } = req.params;
   let index = searchBook(id);
