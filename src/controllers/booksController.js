@@ -44,6 +44,19 @@ class BookController {
       res.status(500).send({ message: err.message });
     });
   };
+
+  static deleteBook = (req, res) => {
+    const { id } = req.params;
+
+    books.findByIdAndDelete(id, (err) => {
+      if (!err) {
+        res.status(200).send({ message: "Book successfully removed" });
+        return;
+      }
+
+      res.status(500).send({ message: err.message });
+    });
+  };
 }
 
 export default BookController;
